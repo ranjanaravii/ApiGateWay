@@ -4,7 +4,6 @@ import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.util.DataSize;
 
 @Configuration
 public class GatewayConfig {
@@ -35,8 +34,7 @@ public class GatewayConfig {
                         .and()
                         .header("Content-Length", "\\d+")
                         .filters(f -> f
-                                .stripPrefix(2)
-                                .filter(new org.springframework.cloud.gateway.filter.factory.RequestSizeGatewayFilterFactory().apply(c -> c.setMaxSize(DataSize.ofBytes(10000000L))))) // 10MB limit
+                                .stripPrefix(2)) 
                         .uri("lb://file-service"))
                 
                 // Admin routes with specific method restrictions
