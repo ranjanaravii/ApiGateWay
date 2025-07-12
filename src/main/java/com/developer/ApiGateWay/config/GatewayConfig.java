@@ -23,6 +23,7 @@ public class GatewayConfig {
                 // Notification Service Route
                 .route("notification-service", r -> r
                         .path("/api/notifications/**")
+                        
                         .filters(f -> f
                                 .stripPrefix(2)
                                 .addRequestHeader("X-Gateway", "API-Gateway"))
